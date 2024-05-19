@@ -1,0 +1,98 @@
+
+import java.util.Scanner;
+import java.io.Serializable;
+
+public class Compra implements Basica, Serializable {
+
+    private String rfc;
+    private String precio;
+    private String titulo;
+    private int cantidad;
+    private String anoPublicacion;
+    private String idMaterial;
+    private int cDetalles;
+
+    private DetalleCompra detallesCompras[] = new DetalleCompra[100];
+
+    public Compra(String rfc, String precio) {
+        this.rfc = rfc;
+        this.precio = precio;
+    }
+
+    public Compra() {
+
+    }
+
+    public String queSoy() {
+        return "Compra";
+    }
+
+    public void capturar() {
+    }
+
+    
+    public void capturar(Inventario material, PonyTeca rfcP) {
+        boolean x = true;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("");
+        ;
+        do {
+            System.out.print("RFC Proveedor       :");
+            rfc = sc.nextLine();
+            if (rfcP.verificarP(rfc) == false) {
+                x = false;
+                System.out.println("Proveedor no registrado ");
+                System.out.println("");
+            }
+            if (rfcP.verificarP(rfc)) {
+                x = true;
+            }
+        } while (x == false);
+
+        System.out.print("Precio              :");
+        precio = sc.nextLine();
+        System.out.print("Titulo              : ");
+        titulo = sc.nextLine();
+        System.out.print("Ano de publicacion  : ");
+        anoPublicacion = sc.nextLine();
+        System.out.print("ID                  : ");
+        idMaterial = sc.nextLine();
+        System.out.print("Cantidad            : ");
+        cantidad = sc.nextInt();
+
+        material.setTitulo(titulo);
+        material.setCantidad(cantidad);
+        material.setAnoPublicacion(anoPublicacion);
+        material.setIdMaterial(idMaterial);
+        material.agregar();
+
+    }
+
+    public void mostrar() {
+        System.out.println("");
+        System.out.println("RFC Proveedor     : " + rfc);
+        System.out.println("Precio            : " + precio);
+        System.out.println("Titulo            : " + titulo);
+        System.out.println("Cantidad          : " + cantidad);
+        System.out.println("Ano publicacion   : " + anoPublicacion);
+        System.out.println("ID                : " + idMaterial);
+
+    }
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+
+}

@@ -1,0 +1,96 @@
+
+import java.util.Scanner;
+import java.util.Set;
+
+public class Devolucion extends Operacion {
+
+    private String fechaDevolucion;
+    private String nombreAlumno;
+    private String idPrestamo;
+    
+    private Operacion prestamos[] = new Operacion[1000];
+    
+    
+
+    public Devolucion() {
+
+    }
+
+    public String queSoy() {
+        return "Devolucion";
+    }
+
+    public Devolucion(String nombreMaterial, String idMaterial, int cantidad,
+            String fechaDevolucion, String nombreAlumno, String idPrestamo) {
+        super(nombreMaterial, idMaterial, cantidad);
+        this.fechaDevolucion = fechaDevolucion;
+        this.nombreAlumno = nombreAlumno;
+        this.idPrestamo = idPrestamo;
+
+    }
+
+    public void capturar(Inventario material) {
+        Scanner leer = new Scanner(System.in);
+        System.out.println("");
+        System.out.print("----------Captura Datos De Devolucion----------");
+        System.out.println("");
+        super.capturar();
+        System.out.print("Id prestamo                      :    ");
+        idPrestamo = leer.nextLine();
+        System.out.println(super.setNombreMaterial(material.getTitulo()));
+      
+        System.out.print("Fecha de devolucion              :    ");
+        fechaDevolucion = leer.nextLine();
+        System.out.print("Nombre del alumno                :    ");
+        nombreAlumno = leer.nextLine();
+        
+        System.out.println("");
+        material.devolver(idPrestamo, super.getCantidad());
+        super.setNombreMaterial(material.getTitulo());
+
+    }
+    
+ 
+   
+    
+    
+    
+    public void mostrar() {
+        Scanner leer = new Scanner(System.in);
+
+        System.out.println("");
+        System.out.print("----------------Datos de Devolucion----------");
+        System.out.println("");
+        super.mostrar();
+        System.out.print("Fecha de devolucion              :    " + fechaDevolucion);
+        System.out.print("Nombre                           :    " + nombreAlumno);
+        System.out.print("Id prestamo                      :    " + idPrestamo);
+
+        System.out.println("");
+    }
+
+    public String getFechaDevolucion() {
+        return fechaDevolucion;
+    }
+
+    public void setFechaDevolucion(String fechaDevolucion) {
+        this.fechaDevolucion = fechaDevolucion;
+    }
+
+    public String getNombreAlumno() {
+        return nombreAlumno;
+    }
+
+    public void setNombreAlumno(String alumnoNombre) {
+        this.nombreAlumno = alumnoNombre;
+    }
+
+    public String getIdPrestamo() {
+        return idPrestamo;
+    }
+
+    public void setIdPrestamo(String idPrestamo) {
+        this.idPrestamo = idPrestamo;
+    }
+
+}
